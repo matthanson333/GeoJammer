@@ -1,12 +1,15 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
-import Navbar from './components/navbar';
-import Home from './pages/home';
-import Login from './pages/login';
-import Signup from './pages/signUp';
-import { LOADING, SET_USER, UNSET_USER } from './store/actions';
-import { useStoreContext } from './store/store';
+import axios from "axios";
+import React, { useEffect } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import Navbar from "./components/navbar";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Signup from "./pages/signUp";
+import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
+import { useStoreContext } from "./store/store";
+// import { usePosition } from "./components/geolocate";
+import ComponentWithGeolocation from "./components/geolocatehook";
+import useGeolocation from "react-hook-geolocation";
 
 const App = () => {
   const history = useHistory();
@@ -15,21 +18,20 @@ const App = () => {
   useEffect(() => {
     dispatch({ type: LOADING });
 
-    axios.get('/api/users').then((response) => {
+    axios.get("/api/users").then((response) => {
       if (response.data.user) {
         dispatch({ type: SET_USER, user: response.data.user });
-        history.push('/');
+        history.push("/");
       } else {
         dispatch({ type: UNSET_USER });
-        history.push('/login');
+        history.push("/login");
       }
     });
   }, [dispatch, history]);
-
   return (
     <div>
       <Navbar />
-
+      <ComponentWithGeolocation />
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
@@ -38,6 +40,11 @@ const App = () => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route
+            exact
+            path="/geolocater"
+            component={ComponentWithGeolocation}
+          />
           <Redirect to="/login" />
         </Switch>
       )}
