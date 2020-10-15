@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Home = (props) => {
   return <div>WE ARE LOGGED IN</div>;
