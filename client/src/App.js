@@ -55,7 +55,7 @@ const App = () => {
 export default App;
 
 
-// import React, { Component } from "react";
+
 // import * as $ from "jquery";
 // import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 // import hash from "./hash";
@@ -90,23 +90,23 @@ export default App;
 
 
 //   componentDidMount() {
-//     // Set token
+//     Set token
 //     let _token = hash.access_token;
 
 //     if (_token) {
-//       // Set token
+//       Set token
 //       this.setState({
 //         token: _token
 //       });
 //       this.getCurrentlyPlaying(_token);
 //     }
 
-//     // set interval for polling every 5 seconds
+//     set interval for polling every 5 seconds
 //     this.interval = setInterval(() => this.tick(), 5000);
 //   }
 
 //   componentWillUnmount() {
-//     // clear the interval to save resources
+//     clear the interval to save resources
 //     clearInterval(this.interval);
 //   }
 
@@ -118,7 +118,7 @@ export default App;
 
 
 //   getCurrentlyPlaying(token) {
-//     // Make a call using the token
+//     Make a call using the token
 //     $.ajax({
 //       url: "https://api.spotify.com/v1/me/player",
 //       type: "GET",
@@ -126,7 +126,7 @@ export default App;
 //         xhr.setRequestHeader("Authorization", "Bearer " + token);
 //       },
 //       success: data => {
-//         // Checks if the data is not empty
+//         Checks if the data is not empty
 //         if(!data) {
 //           this.setState({
 //             no_data: true,
@@ -169,7 +169,7 @@ export default App;
 //           )}
 //           {this.state.no_data && (
 //             <p>
-//               You need to be playing a song on Spotify, for something to appear here.
+//               You need to be playing a song on Spotify for something to appear here.
 //             </p>
 //           )}
 //         </header>
