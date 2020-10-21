@@ -1,11 +1,21 @@
 body {
     background-color: #1b50a0;
     margin-top: 10px;
+    background-image: url(images/musicnotes.jpg);
+}
+.geoLocator {
+  background-color: #1b50a0;
+  border-left: #6555ad;
+  border-spacing: 4in;
+  border-top: 20;
 }
 
 .searchPar {
     background-color: rgb(0, 56, 139) !important;
-}
+    border-right: #7147a1;
+    border-spacing: 4in;
+    border-top: 20;
+  }
 
 .panel-heading {
     color: white;
