@@ -8,7 +8,7 @@ const passport = require('../../passport');
 router.post('/', (req, res) => {
     const { playlistName, coordinates } = req.body;
 
-    Playlist.findOne({ playlistName: playlistName}, (err, playlist) => 
+    Playlist.findOne({ playlistName: playlistName}, (err, playlist) => {
         if (err) {
             console.log('Error Creating Playlist', err);
             return;
@@ -32,6 +32,7 @@ const newPlaylist = new Playlist({
 //     res.json(savedPlaylist);
 // });
 
+});
 });
 
 router.get('/', (req, res) => {
