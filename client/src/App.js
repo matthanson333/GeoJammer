@@ -5,6 +5,10 @@ import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signUp";
+/* import SearchBar from './components/SearchBar/SearchBar';
+import SearchResults from './components/SearchResults/SearchResults';
+import PlayList from './components/PlayList/PlayList';
+import Spotify from './util/Spotify'; */
 import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
 import { useStoreContext } from "./store/store";
 // import { usePosition } from "./components/geolocate";
@@ -35,6 +39,7 @@ const App = () => {
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
+          
         </Switch>
       ) : (
         <Switch>
@@ -52,128 +57,77 @@ const App = () => {
   );
 };
 
+/* 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      "searchResults": [],
+      "playlistName": "New Playlist",
+      "playlistTracks": []
+    };
+
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
+  }
+
+  addTrack(track) {
+    let tracks = this.state.playlistTracks;
+    if (!tracks.find(trackIndex => trackIndex.id === track.id)) {
+      tracks.push(track);
+      this.setState({playlistTracks: tracks});
+    }
+  }
+
+  removeTrack(track) {
+    let tracks = this.state.playlistTracks;
+    let newTracks = tracks.filter(trackIndex => trackIndex.id !== track.id);
+    this.setState({playlistTracks: newTracks});
+
+  }
+
+  updatePlaylistName(name) {
+    this.setState({playlistName: name});
+  }
+
+  savePlaylist() {
+    let tracks = this.state.playlistTracks;
+    if(tracks.length && this.state.playlistName) {
+      let trackURIs = tracks.map(trackIndex => trackIndex.uri);
+      Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+        this.setState({
+          playlistName: 'New Playlist',
+          playlistTracks: []
+        });
+        document.getElementById('Playlist-name').value = this.state.playlistName;
+      });
+    }
+  }
+
+  search(searchTerm) {
+    Spotify.search(searchTerm).then(results => {
+      this.setState({searchResults: results});
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>GEO<span className="highlight">JAM</span>MER</h1>
+        <div className="App">
+          <SearchBar onSearch={this.search} />
+          <div className="App-playlist">
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+} */
+
+
 export default App;
-
-
-
-// import * as $ from "jquery";
-// import { authEndpoint, clientId, redirectUri, scopes } from "./config";
-// import hash from "./hash";
-// import Player from "./Player";
-// import logo from "./logo.svg";
-// import "./App.css";
-
-
-
-// class App extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       token: null,
-//       item: {
-//         album: {
-//           images: [{ url: "" }]
-//         },
-//         name: "",
-//         artists: [{ name: "" }],
-//         duration_ms: 0
-//       },
-//       is_playing: "Paused",
-//       progress_ms: 0,
-//       no_data: false,
-//     };
-
-//     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
-//     this.tick = this.tick.bind(this);
-//   }
-
-
-
-//   componentDidMount() {
-//     Set token
-//     let _token = hash.access_token;
-
-//     if (_token) {
-//       Set token
-//       this.setState({
-//         token: _token
-//       });
-//       this.getCurrentlyPlaying(_token);
-//     }
-
-//     set interval for polling every 5 seconds
-//     this.interval = setInterval(() => this.tick(), 5000);
-//   }
-
-//   componentWillUnmount() {
-//     clear the interval to save resources
-//     clearInterval(this.interval);
-//   }
-
-//   tick() {
-//     if(this.state.token) {
-//       this.getCurrentlyPlaying(this.state.token);
-//     }
-//   }
-
-
-//   getCurrentlyPlaying(token) {
-//     Make a call using the token
-//     $.ajax({
-//       url: "https://api.spotify.com/v1/me/player",
-//       type: "GET",
-//       beforeSend: xhr => {
-//         xhr.setRequestHeader("Authorization", "Bearer " + token);
-//       },
-//       success: data => {
-//         Checks if the data is not empty
-//         if(!data) {
-//           this.setState({
-//             no_data: true,
-//           });
-//           return;
-//         }
-
-//         this.setState({
-//           item: data.item,
-//           is_playing: data.is_playing,
-//           progress_ms: data.progress_ms,
-//           no_data: false /* We need to "reset" the boolean, in case the
-//                             user does not give F5 and has opened his Spotify. */
-//         });
-//       }
-//     });
-//   }
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           {!this.state.token && (
-//             <a
-//               className="btn btn--loginApp-link"
-//               href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-//                 "%20"
-//               )}&response_type=token&show_dialog=true`}
-//             >
-//               Login to Spotify
-//             </a>
-//           )}
-//           {this.state.token && !this.state.no_data && (
-//             <Player
-//               item={this.state.item}
-//               is_playing={this.state.is_playing}
-//               progress_ms={this.state.progress_ms}
-//             />
-//           )}
-//           {this.state.no_data && (
-//             <p>
-//               You need to be playing a song on Spotify for something to appear here.
-//             </p>
-//           )}
-//         </header>
-//       </div>
-//     );
-//   }
-// }
