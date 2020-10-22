@@ -7,9 +7,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signUp";
 import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
 import { useStoreContext } from "./store/store";
-// import { usePosition } from "./components/geolocate";
 import ComponentWithGeolocation from "./components/geolocatehook";
-import useGeolocation from "react-hook-geolocation";
 
 const App = () => {
   const history = useHistory();
@@ -31,7 +29,8 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <ComponentWithGeolocation />
+
+      {/* <ComponentWithGeolocation /> */}
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
@@ -40,11 +39,11 @@ const App = () => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route
+          {/* <Route
             exact
             path="/geolocater"
             component={ComponentWithGeolocation}
-          />
+          /> */}
           <Redirect to="/login" />
         </Switch>
       )}

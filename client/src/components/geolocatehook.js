@@ -7,7 +7,7 @@ const ComponentWithGeolocation = () => {
     maximumAge: 15000,
     timeout: 12000,
   });
-  console.log("success");
+  // console.log("success");
   return !geolocation.error ? (
     <ul>
       <li>Latitude: {geolocation.latitude}</li>
