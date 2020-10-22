@@ -1,0 +1,56 @@
+body,
+html,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: rgb(181, 194, 235);
+}
+
+html {
+  font-size: 18px;
+}
+
+h1 {
+  margin: 0 auto;
+  padding: .77rem 0;
+  background-color: #acb8ee;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.88rem;
+  color: #fff;
+}
+
+h1 .highlight {
+  color: #e6defc;
+}
+
+
+.App-playlist {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1020px) {
+  .App-playlist {
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.55rem;
+}
+
+.App {
+  height: 100%;
+  padding: 0 17% 10% 17%;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+
