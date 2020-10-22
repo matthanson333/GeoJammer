@@ -5,13 +5,10 @@ import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signUp";
-/* import SearchBar from './components/SearchBar/SearchBar';
-import SearchResults from './components/SearchResults/SearchResults';
-import PlayList from './components/PlayList/PlayList';
-import Spotify from './util/Spotify'; */
 import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
 import { useStoreContext } from "./store/store";
-import ComponentWithGeolocation from "./components/geolocatehook";
+// import ComponentWithGeolocation from "./components/geolocatehook";
+import SpotifyApp from "./components/SpotifyApp/SpotifyApp";
 
 const App = () => {
   const history = useHistory();
@@ -38,6 +35,7 @@ const App = () => {
       {state.user ? (
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/SpotifyApp" component={SpotifyApp}/>
           
         </Switch>
       ) : (
@@ -65,14 +63,12 @@ class App extends Component {
       "playlistName": "New Playlist",
       "playlistTracks": []
     };
-
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
   }
-
   addTrack(track) {
     let tracks = this.state.playlistTracks;
     if (!tracks.find(trackIndex => trackIndex.id === track.id)) {
@@ -80,18 +76,14 @@ class App extends Component {
       this.setState({playlistTracks: tracks});
     }
   }
-
   removeTrack(track) {
     let tracks = this.state.playlistTracks;
     let newTracks = tracks.filter(trackIndex => trackIndex.id !== track.id);
     this.setState({playlistTracks: newTracks});
-
   }
-
   updatePlaylistName(name) {
     this.setState({playlistName: name});
   }
-
   savePlaylist() {
     let tracks = this.state.playlistTracks;
     if(tracks.length && this.state.playlistName) {
@@ -105,13 +97,11 @@ class App extends Component {
       });
     }
   }
-
   search(searchTerm) {
     Spotify.search(searchTerm).then(results => {
       this.setState({searchResults: results});
     });
   }
-
   render() {
     return (
       <div>
