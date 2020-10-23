@@ -8,7 +8,7 @@ import Signup from "./pages/signUp";
 import { LOADING, SET_USER, UNSET_USER } from "./store/actions";
 import { useStoreContext } from "./store/store";
 // import ComponentWithGeolocation from "./components/geolocatehook";
-import SpotifyApp from "./components/SpotifyApp/SpotifyApp";
+import SpotifyApp from "./pages/spotifyapp";
 
 const App = () => {
   const history = useHistory();
@@ -30,16 +30,20 @@ const App = () => {
   return (
     <div>
       <Navbar />
+      <Route exact path="/spotifyapp" component={SpotifyApp}/>
 
       {/* <ComponentWithGeolocation /> */}
       {state.user ? (
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/SpotifyApp" component={SpotifyApp}/>
+          <Route exact path="/" >
+            <Home state={state} />
+          </Route>
+          
           
         </Switch>
       ) : (
         <Switch>
+          
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           {/* <Route
@@ -116,7 +120,7 @@ class App extends Component {
       </div>
     );
   }
-} */
+} */ 
 
 
 export default App;
