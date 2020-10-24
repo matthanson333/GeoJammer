@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './spotifyapp.css';
-import Spotify from '../util/Spotify';
-import SearchBar from '../components/SearchBar/SearchBar';
-import SearchResults from '../components/SearchResults/SearchResults';
-import PlayList from '../components/PlayList/PlayList';
-
+import './SpotifyApp.css';
+import Spotify from '../../util/Spotify';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import PlayList from '../PlayList/PlayList';
 
 class SpotifyApp extends Component {
   constructor(props) {
