@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from 'react';
+import SpotifyApp from '../components/SpotifyApp/SpotifyApp';
+import './home.css';
 
 const Home = (props) => {
-  return <div>WE ARE LOGGED IN</div>;
+  return (
+    <div>
+      <SpotifyApp />
+    </div>
+  );
+  
 };
 
 Home.propTypes = {};
