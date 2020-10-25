@@ -26,11 +26,12 @@
         <div class="container">
             <!-- jumbotron -->
             <div class="jumbotron col-sm-12 col-md-offset-1 ccjumbo">
-                <h1><i aria-hidden="true"></i> Geojammer - Location based playlists!</h1>
+                <h1><i aria-hidden="true"></i> Geojammer - Location based playlists</h1>
             </div>
 
-            <h2>Basic Table</h2>
-            <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+            <h2>Geolocation</h2>
+            <p>Type in your city or allow location access to see songs people suggest for your area!</p>
+            </ul>
             <table class="table">
                 <colgroup>
                     <col span="1" style="width:33%">
@@ -41,22 +42,56 @@
                     <tr>
                         <!-- The scope attribute specifies that this is a header for a column -->
                         <th scope="col">Your location</th>
+                        <div class="form-inline form-group">
+                            <ul class="list-group history">
+                                <input class="form-control" type="text" id="search-value">
+                                <button class="btn btn-primary" id="search-button"> <i class="fa fa-search"></i>
+                                </button>
+                        </div>
                         <th scope="col">Songs in your area</th>
                         <th scope="col">Add a song to your location</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Interstellar</td>
-                        <td>2014</td>
-                        <td>Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow</td>
+                        <td>
+                            <div class="form-inline form-group">
+                                <ul class="list-group history">
+                                    <input class="form-control" type="text" id="search-value">
+                                    
+                            </div>
+    
+                            <form> <input type="button" value="ReSelect location">
+                            </form>
+                        </td>
+                        <td>
+                            <div class="form-inline form-group">
+                                <ul class="list-group history">
+                                    <input class="form-control" type="text" id="search-value">
+                                    
+                                    </button>
+                            </div>
+    
+                            <form> <input type="button" value="Play this playlist" >
+                            </form>
+                        </td>
+                        <td>
+                            <div class="form-inline form-group">
+                                <ul class="list-group history">
+                                    <input class="form-control" type="text" id="search-value">
+                            
+                                    </button>
+                            </div>
+    
+                            <form> <input type="button" value="Add new song" onclick="alert('You added a new song!')">
+                            </form>
+                        </td>
                     </tr>
                     <!-- Insert additional movie rows here -->
                 </tbody>
             </table>
         </div>
-
-
+        </div>
         <script src="./script.js"></script>
     </body>
 
